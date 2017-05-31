@@ -6,14 +6,17 @@ using UnityEngine.UI;
 
 public class BallController : MonoBehaviour {
 	public Rigidbody2D myRigidbody;
-	public float speed,checkBallPos = 3,ballFarkX,ballFarkY, tolerans = 0.8f;
+	public float speed;
+	//public float checkBallPos = 3,ballFarkX,ballFarkY, tolerans = 0.8f;
 	public int playerNo;
 	public int PS1 = 0, PS2 = 0; // Player 1&2 Score
 	public Text PT1,PT2,Winner;
 	public SpriteRenderer rrenderer;
 	public GameObject theButton;
-	public Vector2 ballPos, ballPos2;
-	float alfa = 3f, beta = 6f;
+	//public Vector2 ballPos, ballPos2;
+
+
+	public Material ballMaterial;
 	// Use this for initialization
 	void Start () {
 		Time.timeScale = 1f;
@@ -26,7 +29,7 @@ public class BallController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//Player Scor > 10
+		//Player Score > 10
 		if (PS1 == 10) {
 			Time.timeScale = 0f;
 			theButton.SetActive (true);
@@ -40,9 +43,9 @@ public class BallController : MonoBehaviour {
 		}
 		// Top rengi için
 		if (playerNo == 1) {			
-			rrenderer.color = new Color(3f/256, 28f/256, 178f/256, 1f);
+			rrenderer.color = new Color(3f/256, 28f/256, 178f/256, 1f); // Mavi
 		} else if (playerNo == 2) {
-			rrenderer.color = new Color (65f/256,200f/256,83f/256);
+			rrenderer.color = new Color (114f/256,255f/256,0f/256); // Yeşil
 		}
 		//Skor metinleri için
 		PT1.text = "" + PS1;
@@ -77,10 +80,12 @@ public class BallController : MonoBehaviour {
 		// Eğer top çarparsa
 		if (collider.gameObject.name == "Player1") {
 			myRigidbody.velocity = Vector2.one * 7;
-			playerNo = 1;
+			playerNo = 1; // En son 1'e dokunmuş
+			ballMaterial.SetColor("_TintColor", new Color (0f/256,192f/256,255f/256)); //Trail Renderer Renk Mavi
 		} else if (collider.gameObject.name == "Player2") {
 			myRigidbody.velocity = Vector2.one * 7;
-			playerNo = 2;
+			playerNo = 2;  // En son 2'ye dokunmuş
+			ballMaterial.SetColor("_TintColor", new Color (177f/256,255f/256,0f/256)); //Trail Renderer Renk Yeşil
 		} else if (collider.gameObject.name == "WallRight") {
 			Score ();
 		} else if (collider.gameObject.name == "WallLeft") {
