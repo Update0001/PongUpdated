@@ -1,0 +1,9 @@
+{
+"TOTAL_MEMORY": 268435456,
+"dataUrl": "PongUpdated_alpha.data.unityweb",
+"asmCodeUrl": "PongUpdated_alpha.asm.code.unityweb",
+"asmMemoryUrl": "PongUpdated_alpha.asm.memory.unityweb",
+"asmFrameworkUrl": "PongUpdated_alpha.asm.framework.unityweb",
+"splashScreenStyle": "Dark",
+"backgroundColor": "#000000"
+}
